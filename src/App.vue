@@ -1,17 +1,21 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <pdf-review :url="url"></pdf-review>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import pdfReview from './components/PdfReview.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    pdfReview
+  },
+  data () {
+    return {
+      url: 'http://118.24.174.95/api/mvp-manager/file/download/900A03F555FF487296EB5C9E918924BE'
+    }
   }
 }
 </script>
@@ -23,6 +27,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
