@@ -1,7 +1,15 @@
 <template>
   <div class="container">
-    <div v-for="page in pages" :key="page" ref="pageContainer" :style="{ height: pageHeight + 'px' }">
-      <canvas v-if="renderList.includes(page + 1)"></canvas>
+    <div
+      v-for="page in pages"
+      :key="page"
+      ref="pageContainer"
+      :style="{
+        border: showPageLine ? '1px solid #DFDFDF' : '',
+        height: pageHeight + 'px'
+      }">
+      {{ page }}
+      <canvas v-if="renderList.includes(page)"></canvas>
     </div>
   </div>
 </template>
@@ -22,6 +30,10 @@ export default {
     renderPages: { // 前后各预渲染多少页
       type: Number,
       default: 5
+    },
+    showPageLine: {
+      type: Boolean,
+      default: true
     }
   },
   data () {
@@ -70,8 +82,8 @@ export default {
       for (let idx = list.length; idx >= 0; idx--) {
         if (list[idx] > this.pages || list[idx] < 1) list.splice(idx, 1)
       }
-      this.renderList = list
       this.$nextTick(() => {
+        this.renderList = list
         this.renderList.forEach(page => {
           this.renderPage(page)
         })
