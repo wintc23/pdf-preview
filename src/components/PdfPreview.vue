@@ -8,7 +8,6 @@
         border: showPageLine ? '1px solid #DFDFDF' : '',
         height: pageHeight + 'px'
       }">
-      {{ page }}
       <canvas v-if="renderList.includes(page)"></canvas>
     </div>
   </div>
@@ -99,7 +98,7 @@ export default {
         let dpr = window.devicePixelRatio || 1
         let bsr = ctx.webkitBackingStorePixelRatio || ctx.mozBackingStorePixelRatio || ctx.msBackingStorePixelRatio || ctx.oBackingStorePixelRatio || ctx.backingStorePixelRatio || 1
         let ratio = dpr / bsr
-        let viewport = page.getViewport(screen.availWidth / page.getViewport(1).width)
+        let viewport = page.getViewport(screen.availWidth / page.getViewport(.5).width)
         canvas.width = viewport.width * ratio
         canvas.height = viewport.height * ratio
         canvas.style.width = viewport.width + 'px'
