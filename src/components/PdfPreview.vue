@@ -5,7 +5,7 @@
       :key="page"
       ref="pageContainer"
       :style="{
-        border: showPageLine ? '1px solid #DFDFDF' : '',
+        borderBottom: '1px solid #DFDFDF',
         height: pageHeight + 'px'
       }">
       <canvas v-if="renderList.includes(page)"></canvas>
@@ -93,7 +93,7 @@ export default {
         let containerNode = this.$refs.pageContainer[pageNo - 1]
         if (!containerNode) return
         let canvas = containerNode.querySelector('canvas')
-        if (!canvas) return
+        if (!canvas || canvas.__rendered) return
         let ctx = canvas.getContext('2d')
         let dpr = window.devicePixelRatio || 1
         let bsr = ctx.webkitBackingStorePixelRatio || ctx.mozBackingStorePixelRatio || ctx.msBackingStorePixelRatio || ctx.oBackingStorePixelRatio || ctx.backingStorePixelRatio || 1
@@ -110,6 +110,7 @@ export default {
           viewport
         }
         page.render(renderCtx)
+        canvas.__rendered = true
       })
     },
     documentScroll () {
