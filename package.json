@@ -1,6 +1,6 @@
 {
   "name": "pdf-preview",
-  "version": "0.9.6",
+  "version": "0.9.7",
   "description": "移动端pdf预览组件，基于pdf.js",
   "keywords": [
     "pdf-preiview",
